@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @book = Book.new
+    @user = current_user
   end
 
   def edit
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
     user_id = params[:id].to_i
     unless user_id == current_user.id
     redirect_to book_path
-  
+
     end
     @user.update(user_params)
     if @user.save
